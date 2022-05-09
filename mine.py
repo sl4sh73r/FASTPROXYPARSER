@@ -3,6 +3,8 @@ import requests
 import sqlite3
 from bs4 import BeautifulSoup as bsoup
 from PyQt6 import QtCore, QtGui, QtWidgets
+
+import tablebd
 from database import Database
 
 
@@ -287,7 +289,8 @@ class Ui_FastProxy(object):
         self.pushButton_2.setText(_translate("FastProxy", "Очистить"))
 
     def add_functions(self):
-        self.toolButton.clicked.connect(self.write_bd)
+        # self.toolButton.clicked.connect(self.write_bd)
+        self.toolButton.clicked.connect(self.Test)
         self.pushButton_2.clicked.connect(self.delete_bd)
 
     def write_bd(self):
@@ -304,6 +307,7 @@ class Ui_FastProxy(object):
         rows = db.cursorObj.execute('''SELECT *
         FROM users''').fetchall()
         i = 0
+
         for row in rows:
             if i == 10:
                 break
@@ -322,10 +326,10 @@ class Ui_FastProxy(object):
     def delete_bd(self):
         d = Database()
         d.delete()
-    # def Test(self):
-    #     FastProxy.hide()
-    #     Dialog.show()
-
+    def Test(self):
+        FastProxy.show()
+        tablebd.window.show()
+        FastProxy.hide()
 def main():
 
     pass
